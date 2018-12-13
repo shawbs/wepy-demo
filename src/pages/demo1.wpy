@@ -1,12 +1,8 @@
 
-<style lang="scss">
-.avatar{
-  height: 100px;
-  background: url('~@as/images/4.jpg')no-repeat center;
-}
-</style>
+<style lang="scss" src="../assets/styles/components/demo.scss"></style>
 <template>
   <view class="container">
+      <linker class="up-enter-active">color</linker>
       <linker url="/pages/index" stop>
         <list></list>
       </linker>

@@ -1,0 +1,10 @@
+@import '../index';
+
+view{
+    color: $color-main;
+    font-family: "siyuanheiti";
+}
+.avatar{
+    height: 100px;
+    background: url('~@as/images/4.jpg')no-repeat center;
+}

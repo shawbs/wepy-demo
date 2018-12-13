@@ -1,3 +1,9 @@
+<style lang="scss">
+    @import '../assets/styles/index';
+    navigator{
+        color: $color-success;
+    }
+</style>
 <template>
     <navigator 
     open-type="{{type}}" 

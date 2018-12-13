@@ -70,32 +70,8 @@
 
 // 文本对齐
 @each $key, $value in (c:center, l:left, r:right, j:justify) {
-    .text-#{$key} {
+    .text-#{$value} {
         text-align: $value !important;
-    }
-}
-
-// 垂直对齐
-@each $key, $value in (t:top, m:middle, b:bottom) {
-    .va-#{$key} {
-        vertical-align: $value !important;
-    }
-}
-
-// 1px 边框
-@each $key, $value in (all:'', t:'-top', r:'-right', b:'-bottom', l:'-left') {
-    .border-#{$key} {
-        border#{$value}: 1px solid $color-border !important;
-    }
-    .nborder-#{$key} {
-        border#{$value}: 0 !important;
-    }
-}
-
-// 模盒
-@each $key, $value in (b:block, i:inline, ib:inline-block) {
-    .d-#{$key} {
-        display: $value !important;
     }
 }
 

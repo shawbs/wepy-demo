@@ -22,16 +22,13 @@ module.exports = {
 			'@p': path.join(__dirname, 'src/pages'),
 			'@as': path.join(__dirname, 'src/assets'),
 			'@mixin': path.join(__dirname, 'src/mixins'),
-			'@api': path.join(__dirname, 'src/api')
+			'@api': path.join(__dirname, 'src/api'),
+			'@store': path.join(__dirname, 'src/store')
 		},
 		aliasFields: ['wepy', 'weapp'],
 		modules: ['node_modules']
 	},
 	compilers: {
-    // less: {
-    // 	compress: prod,
-    // 	plugins: [new LessPluginAutoPrefix({browsers: ['Android >= 2.3', 'Chrome > 20', 'iOS >= 6']})]
-    // },
 		sass: {
 			outputStyle: 'nested'
 		},
@@ -63,15 +60,12 @@ module.exports = {
 }
 
 if (prod) {
-  // 压缩sass
+	// 压缩sass
 	module.exports.compilers['sass'] = {
 		outputStyle: 'compressed'
 	}
 
-  // 压缩less
-  // module.exports.compilers['less'] = {'compress': true}
-
-  // 压缩js
+	// 压缩js
 	module.exports.plugins = {
 		uglifyjs: {
 			filter: /\.js$/,
