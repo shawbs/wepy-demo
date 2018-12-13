@@ -1,0 +1,67 @@
+
+/*灰色系*/
+$gray1: #f8f9fa !default;
+$gray2: #e9ecef !default;
+$gray3: #dee2e6 !default;
+$gray4: #ced4da !default;
+$gray5: #adb5bd !default;
+$gray6: #868e96 !default;
+$gray7: #495057 !default;
+$gray8: #343a40 !default;
+$gray9: #212529 !default;
+
+/*主色系*/
+$color-main: #bb39cb !default;
+$color-second: #f90 !default;
+$color-body: #fff !default;
+
+/*辅助色*/
+$color-primary: #409EFF !default;
+$color-success: #67c23a !default;
+$color-warning: #e6a23c !default;
+$color-danger: #f56c6c !default;
+$color-info: #909399 !default;
+
+//$color-red: #f00 !default;
+//$color-green: #04be02 !default;
+//$color-blue: #49a9ee !default;
+//$color-yellow: #ffcc33 !default;
+
+$color-price: #ff5000 !default;
+
+/*边框颜色*/
+$color-border: #d9d9d9 !default;
+
+/*字体颜色*/
+$color-text: #333 !default;
+$color-text-minor: #ddd !default;
+
+// 颜色总合 组件内部用
+$colorList: (
+    g1:$gray1,
+    g2:$gray2,
+    g3:$gray3,
+    g4:$gray4,
+    g5:$gray5,
+    g6:$gray6,
+    g7:$gray7,
+    g8:$gray8,
+    g9:$gray9,
+    w:#fff,
+    primary:$color-primary,
+    success:$color-success,
+    warning:$color-warning,
+    danger:$color-danger,
+    info:$color-info,
+    main:$color-main,
+    second:$color-second,
+);
+
+$sizeList: (
+    mini: 0.5,
+    small: 0.75,
+    normal: 1,
+    big: 1.25,
+    more: 1.5,
+    super: 1.75,
+);

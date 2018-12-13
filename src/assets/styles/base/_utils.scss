@@ -1,0 +1,136 @@
+
+// 浮动与清除浮动
+.fn-left {
+    float: left;
+}
+
+.fn-right {
+    float: right;
+}
+
+.fn-clear {
+    @include clearfix;
+}
+
+// 隐藏
+.fn-hide {
+    overflow: hidden !important;
+}
+
+// 超出隐藏
+.fn-hidden {
+    overflow: hidden !important;
+}
+
+.fn-hidden-x {
+    overflow-x: hidden !important;
+}
+
+.fn-hidden-y {
+    overflow-y: hidden !important;
+}
+
+// 字体大小
+.fs-tiny {
+    font-size: 70% !important;
+}
+
+.fs-small {
+    font-size: 80% !important;
+}
+
+.fs-little {
+    font-size: 90% !important;
+}
+
+.fs-normal {
+    font-size: inherit !important;
+}
+
+.fs-big {
+    font-size: 120% !important;
+}
+
+.fs-more {
+    font-size: 140% !important;
+}
+
+.fs-super {
+    font-size: 180% !important;
+}
+
+// 字体加粗
+.fw-bold {
+    font-weight: bold !important;
+}
+
+.fw-normal {
+    font-weight: normal !important;
+}
+
+// 文本对齐
+@each $key, $value in (c:center, l:left, r:right, j:justify) {
+    .text-#{$key} {
+        text-align: $value !important;
+    }
+}
+
+// 垂直对齐
+@each $key, $value in (t:top, m:middle, b:bottom) {
+    .va-#{$key} {
+        vertical-align: $value !important;
+    }
+}
+
+// 1px 边框
+@each $key, $value in (all:'', t:'-top', r:'-right', b:'-bottom', l:'-left') {
+    .border-#{$key} {
+        border#{$value}: 1px solid $color-border !important;
+    }
+    .nborder-#{$key} {
+        border#{$value}: 0 !important;
+    }
+}
+
+// 模盒
+@each $key, $value in (b:block, i:inline, ib:inline-block) {
+    .d-#{$key} {
+        display: $value !important;
+    }
+}
+
+// 间距
+@each $key, $value in (5,10,15,20,25,30,35,40) {
+    .mt-#{$key}{
+        margin-top: #{$key}px;
+    }
+    .mb-#{$key}{
+        margin-bottom: #{$key}px;
+    }
+    .ml-#{$key}{
+        margin-left: #{$key}px;
+    }
+    .mr-#{$key}{
+        margin-right: #{$key}px;
+    }
+    .pt-#{$key}{
+        padding-top: #{$key}px;
+    }
+    .pb-#{$key}{
+        padding-bottom: #{$key}px;
+    }
+    .pl-#{$key}{
+        padding-left: #{$key}px;
+    }
+    .pr-#{$key}{
+        padding-right: #{$key}px;
+    }
+}
+
+.nowrap{
+    white-space: nowrap;
+}
+.trim{
+    font-size: 0;
+    line-height: 0;
+}

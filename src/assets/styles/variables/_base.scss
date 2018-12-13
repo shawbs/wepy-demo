@@ -1,0 +1,32 @@
+
+ $font-family: PingFang, "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !default;
+
+ $body-font-size: 28rpx !default;
+ 
+ $line-height: 1.5 !default;
+
+//  $pagesFontsize: 1.4rem !default;
+//  $popupFontsize: 1.4rem !default;
+//  $headerHeight: 5rem !default;
+//  $secondHeaderHeight: 4rem !default;
+//  $footerHeight: 5rem !default;
+//  $tabHeight: 5rem !default;
+//  $secondFooterHeight: 4rem !default;
+
+$pagesFontsize: 28rpx !default;
+
+
+$page-min-width: 1200px !default;
+
+// 间距
+$margin-small: 20px !default;
+$margin: 40px !default;
+$margin-big: 60px !default;
+
+$padding-small: 20px !default;
+$padding: 40px !default;
+$padding-big: 60px !default;
+
+// grid
+$grid-column: 24 !default;
+$grid-spacing: $margin !default;

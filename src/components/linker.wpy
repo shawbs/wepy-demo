@@ -1,0 +1,90 @@
+<template>
+    <navigator 
+    open-type="{{type}}" 
+    url="{{url}}"
+    target="{{target}}"
+    delta="{{delta}}"
+    app-id="{{appId}}"
+    path="{{path}}"
+    extra-data="{{extraData}}"
+    version="{{version}}"
+    hover-class="{{hoverClass}}"
+    bindsuccess="success"
+    bindfail="fail"
+    bindcomplete="complete"
+    hover-stop-propagation="{{stop}}"
+    hover-start-time="{{num1}}"
+    hover-stay-time="{{num2}}"
+    >
+        <slot />
+    </navigator>
+</template>
+<script>
+    import wepy from 'wepy'
+    export default class Linker extends wepy.component{
+        props = {
+            type: {
+                type: String,
+                default: 'navigate'
+            },
+            url: {
+                type: String,
+                default: ''
+            },
+            target: {
+                type: String,
+                default: 'self'
+            },
+            delta: {
+                type: Number,
+                default: 1
+            },
+            appId: {
+                type: String,
+                default: ''
+            },
+            path: {
+                type: String,
+                default: ''
+            },
+            extraData: {
+                type: Object,
+                default: null
+            },
+            version: {
+                type: String,
+                default: 'release'
+            },
+            hoverClass: {
+                type: String,
+                default: 'link-hover'
+            },
+            stop: {
+                type: Boolean,
+                default: false
+            },
+            num1: {
+                type: Number,
+                default: 50
+            },
+            num2: {
+                type: Number,
+                default: 600
+            }
+        }
+        methods = {
+            success(e){
+                this.$emit('success', e)
+            },
+            fail(e){
+                this.$emit('fail', e)
+            },
+            complete(e){
+                this.$emit('complete', e)
+            }
+        }
+        onLoad(){
+            console.log(this)
+        }
+    }
+</script>

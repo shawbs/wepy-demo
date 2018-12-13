@@ -1,0 +1,91 @@
+
+<style lang="scss">
+.avatar{
+  height: 100px;
+  background: url('~@as/images/4.jpg')no-repeat center;
+}
+</style>
+<template>
+  <view class="container">
+      <linker url="/pages/index" stop>
+        <list></list>
+      </linker>
+      <image src="/assets/images/3.jpg" />
+      <view class="avatar"></view>
+      <button @tap="setUserId(123)" size="mini">demo1</button>
+      <view>{{title}}{{userid}} {{userinfo}}</view>
+      <view wx:for="{{list}}" wx:key="{{index}}">
+        <view>{{item.title}}- {{item.author}}</view>
+        <image src="{{item.img_url}}" />
+        <view>{{item.date}}</view>
+      </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import { connect } from 'wepy-redux'
+  import moduleA from 'module-a' // aliasFields ignore module example
+  import Toast from 'wepy-com-toast'
+  import testMixin from '../mixins/test'
+  import { API } from '@/api/index'
+  import { SETUSERID } from '../store/user/type'
+  import {setUserInfo} from '../store/user/action'
+  import Linker from '@c/linker'
+  import List from '@c/list'
+  console.log('moduleA ignored: ', moduleA) // => moduleA ignored: {}
+
+  @connect({
+    userid(state){
+      return state.user.user_id
+    },
+    userinfo(state){
+      return state.user.userinfo
+    }
+  }, {
+    setUserId: SETUSERID,
+    setUserInfo: setUserInfo
+  })
+
+  export default class Demo1 extends wepy.page {
+    config = {
+      navigationBarTitleText: 'demo1'
+    }
+    components = {
+      linker: Linker,
+      list: List
+    }
+
+    mixins = [testMixin]
+
+    data = {
+      title: 'asd',
+      list: [],
+      falg: true
+    }
+
+    computed = {
+      now () {
+        return +new Date()
+      }
+    }
+
+    methods = {
+      
+    }
+
+    getList(){
+      API.getList().then(res => {
+        console.log(res)
+        this.list = res.data.list
+        // this.$apply()
+        this.methods.setUserInfo({...res.data.list[0]})
+      })
+    }
+
+    onLoad() {
+      console.log(this)
+      this.getList()
+    }
+  }
+</script>
