@@ -2,11 +2,22 @@
 <style lang="scss" src="../assets/styles/components/demo.scss"></style>
 <template>
   <view class="container">
+      <message show ></message>
+      <button @tap="showMessage('alert')">click me</button>
       <linker class="up-enter-active">color</linker>
-      <linker url="/pages/index" stop>
+      <linker url="/pages/demo2">demo2</linker>
+      <!-- <linker url="/pages/index" stop>
         <list></list>
-      </linker>
-      <image src="/assets/images/3.jpg" />
+      </linker> -->
+      <video
+        id="myVideo"
+        src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
+        danmu-list="{{danmuList}}"
+        enable-danmu
+        danmu-btn
+        controls
+      ></video>
+      <!-- <image src="/assets/images/3.jpg" /> -->
       <view class="avatar"></view>
       <button @tap="setUserId(123)" size="mini">demo1</button>
       <view>{{title}}{{userid}} {{userinfo}}</view>
@@ -29,6 +40,7 @@
   import {setUserInfo} from '../store/user/action'
   import Linker from '@c/linker'
   import List from '@c/list'
+  import Message from '@c/message'
   console.log('moduleA ignored: ', moduleA) // => moduleA ignored: {}
 
   @connect({
@@ -49,7 +61,8 @@
     }
     components = {
       linker: Linker,
-      list: List
+      list: List,
+      message: Message
     }
 
     mixins = [testMixin]
@@ -57,7 +70,19 @@
     data = {
       title: 'asd',
       list: [],
-      falg: true
+      falg: true,
+      danmuList: [
+        {
+          text: '第 1s 出现的弹幕',
+          color: '#ff0000',
+          time: 1
+        },
+        {
+          text: '第 3s 出现的弹幕',
+          color: '#ff00ff',
+          time: 3
+        }
+      ]
     }
 
     computed = {
@@ -67,7 +92,10 @@
     }
 
     methods = {
-      
+      showMessage(type, e){
+        console.log(type, e)
+        this.$invoke('message', type)
+      }
     }
 
     getList(){
@@ -80,7 +108,7 @@
     }
 
     onLoad() {
-      console.log(this)
+      // console.log(this)
       this.getList()
     }
   }

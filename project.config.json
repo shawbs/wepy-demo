@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"appid": "wx9e4d5a908ae4aebe",
 	"projectname": "wepy-demo",
-	"miniprogramRoot": "./dist",
+	"miniprogramRoot": "dist/",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -31,9 +31,10 @@
 			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "demo1",
-					"pathName": "pages/demo1"
+					"pathName": "pages/demo2",
+					"query": ""
 				}
 			]
 		}

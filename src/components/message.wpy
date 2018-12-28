@@ -1,0 +1,179 @@
+<style lang="scss">
+.alert-mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background: rgba(0,0,0,.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.alert-box{
+    width: 600rpx;
+    font-size: 30rpx;
+    background: #fff;
+    border-radius: 10rpx;
+    .alert-head{
+        padding: 20rpx;
+        text-align: center;
+    }
+    .alert-body{
+        padding: 60rpx 20rpx;
+        text-align: center;
+        font-size: 34rpx;
+    }
+    .alert-footer{
+        text-align: center;
+        display: flex;
+        .btn{
+            flex: 1;
+            padding: 20rpx;
+        }
+    }
+    &.input-box{
+        .alert-head{
+            padding: 30rpx;
+        }
+        .alert-body{
+            padding: 10rpx 100rpx 50rpx;
+            input{
+                border-bottom: 1px solid #E1E1E1;
+            }
+        }  
+    }
+}
+
+.btn-comfirm{
+  border-top: 1px solid #009ADD;
+  background: #009ADD;
+  color: #fff;
+}
+.btn-cancel{
+  border-top: 1px solid #E1E1E1;
+}
+
+</style>
+<template>
+    <view class='alert-mask' wx:if="{{show}}">
+        <view class='alert-box' wx:if="{{type == 'alert'}}">
+            <view class='alert-head' wx:if="{{hasHead}}">{{title}}</view>
+            <view class='alert-body'>{{content}}</view>
+            <view class='alert-footer'>
+            <view class='btn btn-comfirm' bindtap='confrim'>确定</view>
+            </view>
+        </view>
+
+        <view class='alert-box confirm' wx:if="{{type == 'confirm'}}">
+            <view class='alert-head' wx:if="{{hasHead}}">{{title}}</view>
+            <view class='alert-body'>{{content}}</view>
+            <view class='alert-footer'>
+            <view class='btn btn-cancel' bindtap='close'>取消</view>
+            <view class='btn btn-comfirm' bindtap='confrim'>确定</view>
+            </view>
+        </view>
+
+        <view class='alert-box input-box' wx:if="{{type == 'input'}}">
+            <view class='alert-head' wx:if="{{hasHead}}">{{title}}</view>
+            <view class='alert-body'>
+            <input placeholder='{{placeholderVal}}' type='{{inputType}}' bindinput='changeInput'></input>
+            </view>
+            <view class='alert-footer'>
+            <view class='btn btn-cancel' bindtap='close'>取消</view>
+            <view class='btn btn-comfirm' bindtap='confrim'>确定</view>
+            </view>
+        </view>
+    </view>
+</template>
+
+<script>
+    import wepy from 'wepy'
+    import {Comm} from '@util'
+    export default class Message extends wepy.component {
+        props = {
+            title: {
+                type: String,
+                default: '提示'
+            },
+            content:{
+                type: String,
+                default: 'hello'
+            },
+            hasHead: {
+                type: Boolean,
+                default: true
+            },
+            show: {
+                type: Boolean,
+                default: false
+            },
+            type:{
+                type: String,
+                default: 'alert'
+            },
+            placeholderVal:{
+                type: String,
+                default: ''
+            },
+            inputType: {
+                type: String,
+                default: 'text'
+            }
+        }
+        data = {
+            value: ''
+        }
+        methods = {
+            alert(pramter = {}){
+                if(Comm.getType(pramter) !== 'object') throw new Error('arg must be a object')
+                for(let i in pramter){
+                    this[i] = pramter[i]
+                }
+                this.show = true;
+                this.type = 'alert';
+            },
+
+            confirm(pramter = {}) {
+                if(Comm.getType(pramter) !== 'object') throw new Error('arg must be a object')
+                for(let i in pramter){
+                    this[i] = pramter[i]
+                }
+                this.show = true;
+                this.type = 'confirm';
+            },
+
+            input(pramter = {}) {
+                if(Comm.getType(pramter) !== 'object') throw new Error('arg must be a object')
+                for(let i in pramter){
+                    this[i] = pramter[i]
+                }
+                this.show = true;
+                this.type = 'input';
+            },
+
+            confrim(){
+                this.show = false
+                if( this.confirmFunc && typeof this.confirmFunc === 'function'){
+                    this.confirmFunc(this.data.type == 'input' ? this.data.value : '', this)
+                }
+            },
+
+            close(){
+                this.show = false
+                if( this.cancleFunc && typeof this.cancleFunc === 'function'){
+                    this.cancleFunc(this)
+                }
+            },
+
+            changeInput(e){
+                this.value = e.detail.value
+            }
+        }
+
+        onLoad(){
+            // console.log(this)
+        }
+    }
+</script>

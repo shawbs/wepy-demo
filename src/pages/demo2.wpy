@@ -1,0 +1,56 @@
+<style lang="scss">
+    
+</style>
+<template>
+    <view class="container">
+        <button @tap="drawing">drawing</button>
+        <button @tap="canvasToImg">canvas to img</button>
+        <canvas canvas-id="canvas1" style="width:{{canvas.x}}px;height:{{canvas.y}}px;"></canvas>
+        <image src="{{shareImg}}" style="width:{{canvas.x}}px;height:{{canvas.y}}px;"/>
+    </view>
+</template>
+<script>
+    import wepy from 'wepy'
+    export default class Demo2 extends wepy.page{
+        config = {
+            navigationBarTitleText: 'demo2'
+        }
+        data = {
+            canvas: {
+                x: 300,
+                y: 150
+            },
+            shareImg: ''
+        }
+        methods = {
+            drawing(){
+                const ctx = wx.createCanvasContext('canvas1', this);
+                if(ctx){
+                    ctx.beginPath();
+
+                    ctx.setFontSize(24);
+                    ctx.setFillStyle('#333');
+                    ctx.save();
+
+                    ctx.fillText('长按识别二维码', 50, 24);
+
+                    ctx.draw(false)
+                }
+            },
+
+            canvasToImg(){
+                const self = this
+                wx.canvasToTempFilePath({
+                    x: 0,
+                    y: 0,
+                    width: this.canvas.w,
+                    height: this.canvas.h,
+                    canvasId: 'canvas1',
+                    success(res) {
+                        self.shareImg = res.tempFilePath;
+                    }
+                })
+            }
+        }
+    }
+</script>
