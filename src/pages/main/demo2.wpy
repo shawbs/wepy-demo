@@ -1,6 +1,4 @@
-<style lang="scss">
-    
-</style>
+
 <template>
     <view class="container">
         <button @tap="drawing">drawing</button>

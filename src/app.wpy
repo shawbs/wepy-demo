@@ -12,16 +12,25 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/index',
-      'pages/demo1',
-      'pages/demo2'
+      'pages/main/index',
+      'pages/main/demo1',
+      'pages/main/demo2'
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
-    }
+    },
+    subpackages: [
+      {
+        root: 'pages/package1',
+        name: 'package1',
+        pages: [
+          'pages/index',
+        ]
+      }
+    ]
   }
 
   globalData = {

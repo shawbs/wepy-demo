@@ -1,11 +1,12 @@
 
-<style lang="scss" src="../assets/styles/components/demo.scss"></style>
+<style lang="scss" src="../../assets/styles/components/demo.scss"></style>
 <template>
   <view class="container">
       <message show ></message>
       <button @tap="showMessage('alert')">click me</button>
       <linker class="up-enter-active">color</linker>
-      <linker url="/pages/demo2">demo2</linker>
+      <linker url="/pages/main/demo2">demo2</linker>
+      <linker url="/pages/package1/pages/index">/package1/pages/index</linker>
       <!-- <linker url="/pages/index" stop>
         <list></list>
       </linker> -->
@@ -34,10 +35,10 @@
   import { connect } from 'wepy-redux'
   import moduleA from 'module-a' // aliasFields ignore module example
   import Toast from 'wepy-com-toast'
-  import testMixin from '../mixins/test'
+  import testMixin from '@/mixins/test'
   import { API } from '@/api/index'
-  import { SETUSERID } from '../store/user/type'
-  import {setUserInfo} from '../store/user/action'
+  import { SETUSERID } from '@/store/user/type'
+  import {setUserInfo} from '@/store/user/action'
   import Linker from '@c/linker'
   import List from '@c/list'
   import Message from '@c/message'
